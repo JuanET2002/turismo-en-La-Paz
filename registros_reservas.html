@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserva turismo La Paz</title>
+    <link rel="stylesheet" href="/css/reservas.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Reserva de Viajes - La Paz</h1>
+            <p>Descubre los paisajes más impresionantes de Bolivia</p>
+        </header>
+        
+        <div class="reserva-container">
+            <form id="formReserva">
+                <h2>Información del Viaje</h2>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="destino">Destino</label>
+                        <select id="destino" required>
+                            <option value="">seleccione una opcion</option>
+                            <option value="uyuni">Centro Paceño</option>
+                            <option value="tiwanaku">Estación Central</option>
+                            <option value="copacabana">Mercado de las Brujas</option>
+                            <option value="yungas">Mirador de Killi Killi</option>
+                            <option value="valle-luna">Valle de la Luna</option>
+                            <option value="valle-luna">Calle Jaen</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="fecha">Fecha del viaje</label>
+                        <input type="date" id="fecha" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="adultos">Adultos</label>
+                        <input type="number" id="adultos" min="1" value="1" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="ninos">Niños (5-12 años)</label>
+                        <input type="number" id="ninos" min="0" value="0">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="comentarios">Comentarios o requerimientos especiales</label>
+                    <textarea id="comentarios" rows="3"></textarea>
+                </div>
+                
+                <h2>Información Personal</h2>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nombre">Nombre completo</label>
+                        <input type="text" id="nombre" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Correo electrónico</label>
+                        <input type="email" id="email" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="telefono">Teléfono</label>
+                        <input type="tel" id="telefono" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="documento">Número de documento</label>
+                        <input type="text" id="documento" required>
+                    </div>
+                </div>
+                
+                <h2>Método de Pago</h2>
+                
+                <div class="metodo-pago">
+                    <div class="opcion-pago" onclick="seleccionarPago('qr')">
+                        <input type="radio" name="metodo-pago" id="pago-qr" required>
+                        <label for="pago-qr">Pago con QR</label>
+                        
+                        <div class="detalles-pago" id="detalles-qr">
+                            <div class="qr-code">
+                                <p>Escanea el siguiente código QR para realizar el pago:</p>
+                                <!-- Imagen de ejemplo de QR -->
+                                <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://pagaconqr.com/reserva-12345" alt="Código QR para pago">
+                                <p>Total a pagar: <strong id="total-qr">Bs. 30</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="opcion-pago" onclick="seleccionarPago('tarjeta')">
+                        <input type="radio" name="metodo-pago" id="pago-tarjeta">
+                        <label for="pago-tarjeta">Tarjeta de crédito/débito</label>
+                        
+                        <div class="detalles-pago" id="detalles-tarjeta">
+                            <div class="tarjeta-form">
+                                <div class="form-group">
+                                    <label for="numero-tarjeta">Número de tarjeta</label>
+                                    <input type="text" id="numero-tarjeta" placeholder="1234 5678 9012 3456">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="fecha-expiracion">Fecha de expiración</label>
+                                    <input type="text" id="fecha-expiracion" placeholder="MM/AA">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="cvv">CVV</label>
+                                    <input type="text" id="cvv" placeholder="123">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="nombre-tarjeta">Nombre en la tarjeta</label>
+                                    <input type="text" id="nombre-tarjeta">
+                                </div>
+                            </div>
+                            <p>Total a pagar: <strong id="total-tarjeta">Bs. 30</strong></p>
+                        </div>
+                    </div>
+                    
+                    <div class="opcion-pago" onclick="seleccionarPago('giro')">
+                        <input type="radio" name="metodo-pago" id="pago-giro">
+                        <label for="pago-giro">Giro bancario</label>
+                        
+                        <div class="detalles-pago" id="detalles-giro">
+                            <div class="giro-bancario">
+                                <p>Realiza el pago en cualquier agencia de los siguientes bancos:</p>
+                                <p><strong>Banco Nacional de Bolivia</strong><br>
+                                Cuenta: 123456789<br>
+                                A nombre de: Turismo La Paz S.A.<br>
+                                NIT: 123456789</p>
+                                
+                                <p><strong>Banco Mercantil Santa Cruz</strong><br>
+                                Cuenta: 987654321<br>
+                                A nombre de: Turismo La Paz S.A.<br>
+                                NIT: 123456789</p>
+                                
+                                <p>Total a pagar: <strong id="total-giro">Bs. 30</strong></p>
+                                <p>Una vez realizado el pago, envíe el comprobante a <strong>pagos@turismolapaz.com</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn btn-block">Confirmar Reserva</button>
+            </form>
+        </div>
+        
+        <footer>
+            <p>© 2025 Turismo La Paz - Todos los derechos reservados</p>
+        </footer>
+    </div>
+    
+    <script>
+        function seleccionarPago(metodo) {
+            document.querySelectorAll('.detalles-pago').forEach(detalle => {
+                detalle.style.display = 'none';
+            });
+            document.querySelectorAll('.opcion-pago').forEach(opcion => {
+                opcion.classList.remove('active');
+            });
+            document.getElementById(`detalles-${metodo}`).style.display = 'block';
+            document.querySelector(`#pago-${metodo}`).checked = true;
+            event.currentTarget.classList.add('active');
+            const total = calcularTotal();
+            document.getElementById(`total-${metodo}`).textContent = `Bs. ${total}`;
+        }
+        
+        function calcularTotal() {
+            const adultos = parseInt(document.getElementById('adultos').value) || 0;
+            const ninos = parseInt(document.getElementById('ninos').value) || 0;
+            const precioAdulto = 30;
+            const precioNino = 15;
+            
+            return (adultos * precioAdulto) + (ninos * precioNino);
+        }
+        document.getElementById('adultos').addEventListener('change', actualizarTotales);
+        document.getElementById('ninos').addEventListener('change', actualizarTotales);
+        
+        function actualizarTotales() {
+            const total = calcularTotal();
+            document.querySelectorAll('[id^="total-"]').forEach(element => {
+                element.textContent = `Bs. ${total}`;
+            });
+        }
+        document.getElementById('formReserva').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const metodoPago = document.querySelector('input[name="metodo-pago"]:checked');
+            if (!metodoPago) {
+                alert('Por favor seleccione un método de pago');
+                return;
+            }
+            alert('¡Reserva enviada con éxito! Recibirá un correo con los detalles.');
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            seleccionarPago('qr');
+            actualizarTotales();
+        });
+    </script>
+</body>
+</html>
